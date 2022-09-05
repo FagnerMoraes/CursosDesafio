@@ -28,9 +28,8 @@
                                         
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Curso.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Curso.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <p>ViewBag.CursoNome</p>
                             @Html.Hidden("CursoId"  )
                             @Html.EditorFor(model => model.TituloDoModulo, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.TituloDoModulo, "", new { @class = "text-danger" })
