@@ -1,0 +1,114 @@
+﻿@model CursosDesafio.Domain.Entities.Modulo
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Criar novo Modulo</h2>
+
+<hr />
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm())
+        {
+
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Criar novo Modulo</h4>
+            </div>
+
+            @Html.AntiForgeryToken()
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Curso.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <p>ViewBag.CursoNome</p>
+                            @Html.Hidden("CursoId"  )
+                            @Html.EditorFor(model => model.TituloDoModulo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TituloDoModulo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TituloDoModulo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.TituloDoModulo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TituloDoModulo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OrdemDeExibicao, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.OrdemDeExibicao, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.OrdemDeExibicao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Criar" class="btn btn-default" />
+                        <input type="button" value="Cancelar" class="btn btn-danger" data-dismiss="modal" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+<div class="row">
+    <hr />
+    <div class="col-sm-3 col-sm-offset-6">
+        <a class="btn btn-block btn-lg btn-danger" href="@Url.RouteUrl("Index")"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+    </div>
+    <div class="col-sm-3">
+        <button type="submit" class="btn btn-block btn-lg btn-success" value="Adicionar"><span class="glyphicon glyphicon-floppy-disk"></span>Salvar</button>
+    </div>
+</div>
+
+<div>
+    
+    @Html.ActionLink("Voltar", "Index", "Cursos")
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TituloDoModulo" class="control-label"></label>
+                <input asp-for="TituloDoModulo" class="form-control" />
+                <span asp-validation-for="TituloDoModulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrdemDeExibicao" class="control-label"></label>
+                <input asp-for="OrdemDeExibicao" class="form-control" />
+                <span asp-validation-for="OrdemDeExibicao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+

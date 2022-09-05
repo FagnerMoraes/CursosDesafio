@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CursosDesafio.Domain.Entities.Modulo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success create" asp-controller="Modulos" asp-action="Create"><i class="glyphicon glyphicon-open">Criar Modulo</i></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TituloDoModulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrdemDeExibicao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TituloDoModulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrdemDeExibicao)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div id="modal" class="modal fade" role="dialog" />
+
+@section scripts{
+        <script>
+            $(function () {
+                $(".details").click(function () {
+                    var id = $(this).attr("data-id");
+                    alert(id);
+                    $("#modal").load("Details?id=" + id, function () {
+                        $("#modal").modal();
+                    })
+                });
+
+                $(".edit").click(function () {
+                    var id = $(this).attr("data-id");
+                    alert(id);
+                    $("#modal").load("Edit?id=" + id, function () {
+                        $("#modal").modal();
+                    })
+                });
+
+                $(".delete").click(function () {
+                    var id = $(this).attr("data-id");
+                    alert(id);
+                    $("#modal").load("Delete?id=" + id, function () {
+                        $("#modal").modal();
+                    })
+                });
+
+               $(".create").click(function () {
+                    $("#modal").load("Create", function () {
+                        $("#modal").modal();
+                    })
+                });
+
+            })
+        </script>
+}
